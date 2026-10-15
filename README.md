@@ -1,4 +1,4 @@
-# mdowXTwitter
+# mdownXTwitter
 
 Windows 桌面工具，使用 C++17 / Qt 6 Widgets，通过独立的 yt-dlp 进程解析和下载视频。
 
@@ -10,12 +10,12 @@ Windows 桌面工具，使用 C++17 / Qt 6 Widgets，通过独立的 yt-dlp 进�
 .\scripts\build.ps1
 .\scripts\setup-tools.ps1 -IncludeFFmpeg
 .\scripts\build.ps1 -Package
-.\dist\mdowXTwitter.exe
+.\dist\mdownXTwitter.exe
 ```
 
 `build.ps1` 默认编译并运行测试。可传 `-QtRoot`、`-CompilerRoot` 使用其他 Qt/MinGW 路径。依赖准备需要访问 GitHub，脚本从上游 release 下载并校验 SHA256；不修改系统 PATH 或安装全局 Python 包。若已有依赖，可跳过准备脚本，在界面中指定可执行文件和 FFmpeg 目录。
 
-开发时在 Qt Creator 打开 `CMakeLists.txt`，选择对应的 **Qt 6 MinGW 64-bit** Kit。编译产物为 `build/mdowXTwitter.exe`，便携版入口为 `dist/mdowXTwitter.exe`。准备依赖后应重新打包，以把引擎一并复制到 dist。
+开发时在 Qt Creator 打开 `CMakeLists.txt`，选择对应的 **Qt 6 MinGW 64-bit** Kit。编译产物为 `build/mdownXTwitter.exe`，便携版入口为 `dist/mdownXTwitter.exe`。准备依赖后应重新打包，以把引擎一并复制到 dist。
 
 ## 使用
 
@@ -35,7 +35,7 @@ Windows 桌面工具，使用 C++17 / Qt 6 Widgets，通过独立的 yt-dlp 进�
 
 ```powershell
 .\scripts\build.ps1
-.\dist\mdowXTwitter.exe --smoke-test
+.\dist\mdownXTwitter.exe --smoke-test
 ```
 
 测试覆盖引擎元数据解析、进度解析、中文保存路径、异常 JSON、限流、启动失败、取消后复用，以及界面中的链接去重、多视频拆分、清晰度保留和顺序下载。常规测试引擎为本地子进程，不访问 X；便携版启动检查生成 `dist/smoke-test.txt` 和界面截图 `dist/smoke-test.png`，使用独立的配置命名空间。

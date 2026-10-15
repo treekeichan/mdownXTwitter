@@ -3,16 +3,16 @@
 class EngineTests : public QObject {
     Q_OBJECT
     EngineOptions options() const {
-        EngineOptions o; o.executable = qEnvironmentVariable("MDOW_TEST_ENGINE"); o.outputDirectory = QDir::tempPath(); return o;
+        EngineOptions o; o.executable = qEnvironmentVariable("MDOWN_TEST_ENGINE"); o.outputDirectory = QDir::tempPath(); return o;
     }
 private slots:
     void realDownload() {
-        const QString url = qEnvironmentVariable("MDOW_INTEGRATION_URL");
-        if (url.isEmpty()) QSKIP("Set MDOW_INTEGRATION_URL to opt into a real download");
+        const QString url = qEnvironmentVariable("MDOWN_INTEGRATION_URL");
+        if (url.isEmpty()) QSKIP("Set MDOWN_INTEGRATION_URL to opt into a real download");
         EngineOptions o;
-        const QString tools = qEnvironmentVariable("MDOW_REAL_TOOLS");
+        const QString tools = qEnvironmentVariable("MDOWN_REAL_TOOLS");
         o.executable = tools + QStringLiteral("/yt-dlp.exe"); o.ffmpegDirectory = tools;
-        o.outputDirectory = qEnvironmentVariable("MDOW_REAL_OUTPUT");
+        o.outputDirectory = qEnvironmentVariable("MDOWN_REAL_OUTPUT");
         QVERIFY(!o.outputDirectory.isEmpty()); QVERIFY(QDir().mkpath(o.outputDirectory));
         DownloadEngine engine; QSignalSpy info(&engine, &DownloadEngine::inspected), done(&engine, &DownloadEngine::finished), saved(&engine, &DownloadEngine::saved);
         engine.inspect(url, o); QVERIFY(done.wait(45000));
@@ -47,7 +47,7 @@ private slots:
     }
     void failedStart() {
         DownloadEngine engine; QSignalSpy done(&engine, &DownloadEngine::finished);
-        auto o = options(); o.executable = QStringLiteral("Z:/nonexistent-mdow.exe");
+        auto o = options(); o.executable = QStringLiteral("Z:/nonexistent-mdown.exe");
         engine.inspect(QStringLiteral("https://x.com/ok"), o);
         if (done.isEmpty()) QVERIFY(done.wait(5000));
         QCOMPARE(done.size(), 1); QVERIFY(!done.first()[0].toBool());

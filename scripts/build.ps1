@@ -27,8 +27,8 @@ if (!$SkipTests) {
 if ($Package) {
     $distDir = Join-Path $projectRoot 'dist'
     New-Item -ItemType Directory -Path $distDir -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $buildDir 'mdowXTwitter.exe') -Destination $distDir -Force
-    & "$QtRoot\bin\windeployqt.exe" --release --compiler-runtime --no-translations --no-opengl-sw --no-system-d3d-compiler (Join-Path $distDir 'mdowXTwitter.exe')
+    Copy-Item -LiteralPath (Join-Path $buildDir 'mdownXTwitter.exe') -Destination $distDir -Force
+    & "$QtRoot\bin\windeployqt.exe" --release --compiler-runtime --no-translations --no-opengl-sw --no-system-d3d-compiler (Join-Path $distDir 'mdownXTwitter.exe')
     if ($LASTEXITCODE -ne 0) { throw 'Qt deployment failed' }
     $toolsDir = Join-Path $projectRoot 'tools'
     if (Test-Path -LiteralPath $toolsDir) {
@@ -40,5 +40,5 @@ if ($Package) {
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot 'README.md') -Destination $distDir -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot 'THIRD_PARTY.md') -Destination $distDir -Force
-    Write-Host "Portable application: $distDir\mdowXTwitter.exe"
+    Write-Host "Portable application: $distDir\mdownXTwitter.exe"
 }

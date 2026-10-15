@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $toolsDir = Join-Path $projectRoot 'tools'
 New-Item -ItemType Directory -Path $toolsDir -Force | Out-Null
-$headers = @{ 'User-Agent' = 'MdowXDownloader-Setup'; 'Accept' = 'application/vnd.github+json' }
+$headers = @{ 'User-Agent' = 'mdownXTwitter-Setup'; 'Accept' = 'application/vnd.github+json' }
 function Get-VerifiedAsset($Asset, [string]$Target, [string]$FallbackHash = '') {
     $expected = $FallbackHash
     if ($Asset.digest -match '^sha256:([a-fA-F0-9]{64})$') { $expected = $Matches[1] }

@@ -17,7 +17,7 @@ class UiTests : public QObject {
 private slots:
     void initTestCase() {
         QVERIFY(settings.isValid());
-        QCoreApplication::setOrganizationName(QStringLiteral("MdowTests"));
+        QCoreApplication::setOrganizationName(QStringLiteral("mdownXTwitterTests"));
         QCoreApplication::setApplicationName(QStringLiteral("QueueTests"));
         QSettings::setDefaultFormat(QSettings::IniFormat);
         QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, settings.path());
@@ -33,7 +33,7 @@ private slots:
         });
         dismissUnexpectedDialog.start(50);
         MainWindow window;
-        window.findChild<QLineEdit *>(QStringLiteral("enginePath"))->setText(qEnvironmentVariable("MDOW_TEST_ENGINE"));
+        window.findChild<QLineEdit *>(QStringLiteral("enginePath"))->setText(qEnvironmentVariable("MDOWN_TEST_ENGINE"));
         window.findChild<QLineEdit *>(QStringLiteral("outputPath"))->setText(settings.path() + QStringLiteral("/downloads"));
         auto *table = window.findChild<QTableWidget *>(QStringLiteral("tasks"));
         const int before = table->rowCount();
@@ -61,7 +61,7 @@ private slots:
     }
     void selectedDownloadAndClearDuringActiveTask() {
         MainWindow window;
-        window.findChild<QLineEdit *>(QStringLiteral("enginePath"))->setText(qEnvironmentVariable("MDOW_TEST_ENGINE"));
+        window.findChild<QLineEdit *>(QStringLiteral("enginePath"))->setText(qEnvironmentVariable("MDOWN_TEST_ENGINE"));
         window.findChild<QLineEdit *>(QStringLiteral("outputPath"))->setText(settings.path() + QStringLiteral("/downloads"));
         auto *table = window.findChild<QTableWidget *>(QStringLiteral("tasks"));
         auto *start = window.findChild<QPushButton *>(QStringLiteral("startDownload"));

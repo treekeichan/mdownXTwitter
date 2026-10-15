@@ -73,8 +73,8 @@ void DownloadEngine::download(const QString &url, const QString &format, const E
     args << QStringLiteral("--newline") << QStringLiteral("--progress")
          << QStringLiteral("--progress-delta") << QStringLiteral("0.3")
          << QStringLiteral("--progress-template")
-         << QStringLiteral("download:MDOW_PROGRESS:%(progress)j")
-         << QStringLiteral("--print") << QStringLiteral("after_move:MDOW_FILE:%(filepath)j")
+         << QStringLiteral("download:MDOWN_PROGRESS:%(progress)j")
+         << QStringLiteral("--print") << QStringLiteral("after_move:MDOWN_FILE:%(filepath)j")
          << QStringLiteral("--no-simulate")
          << QStringLiteral("--windows-filenames") << QStringLiteral("--continue")
          << QStringLiteral("--no-overwrites")
@@ -113,7 +113,7 @@ void DownloadEngine::readErrors() {
 }
 
 void DownloadEngine::handleLine(const QByteArray &line, bool error) {
-    if (line.startsWith("MDOW_PROGRESS:")) {
+    if (line.startsWith("MDOWN_PROGRESS:")) {
         const auto p = QJsonDocument::fromJson(line.mid(14)).object();
         const double total = p.value(QStringLiteral("total_bytes")).toDouble(
             p.value(QStringLiteral("total_bytes_estimate")).toDouble());
@@ -123,7 +123,7 @@ void DownloadEngine::handleLine(const QByteArray &line, bool error) {
         emit progress(total > 0 ? qBound(0.0, received * 100.0 / total, 100.0) : -1,
             speed > 0 ? tr("%1 MiB/s").arg(speed / 1048576.0, 0, 'f', 2) : QString(),
             eta >= 0 ? tr("剩余 %1 秒").arg(eta) : QString());
-    } else if (line.startsWith("MDOW_FILE:")) {
+    } else if (line.startsWith("MDOWN_FILE:")) {
         const auto a = QJsonDocument::fromJson(QByteArray("[") + line.mid(10) + QByteArray("]")).array();
         if (!a.isEmpty()) savedPath = a.first().toString();
     } else if (error && !line.isEmpty()) {

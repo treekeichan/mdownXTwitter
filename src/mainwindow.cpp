@@ -45,7 +45,7 @@ QString historyPath() {
 }
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), engine(this) {
-    setWindowTitle(tr("X 视频下载器")); resize(1120, 780); setMinimumSize(960, 680);
+    setWindowTitle(tr("mdownXTwitter 视频下载器")); resize(1120, 780); setMinimumSize(960, 680);
     setObjectName(QStringLiteral("downloadWindow"));
     setStyleSheet(QStringLiteral(R"(
         QMainWindow#downloadWindow { background: #f3f6fa; }
@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), engine(this) {
     )"));
     auto *central = new QWidget(this); setCentralWidget(central);
     auto *layout = new QVBoxLayout(central); layout->setContentsMargins(24, 22, 24, 16); layout->setSpacing(14);
-    auto *title = new QLabel(tr("X / Twitter 视频下载器"));
+    auto *title = new QLabel(tr("mdownXTwitter 视频下载器"));
     QFont font = title->font(); font.setPointSize(20); font.setBold(true); title->setFont(font);
     layout->addWidget(title);
     auto *subtitle = new QLabel(tr("粘贴链接，选择清晰度，将视频保存到本地。"));

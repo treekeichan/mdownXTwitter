@@ -21,8 +21,8 @@ int main(int argc, char **argv) {
         out << QJsonDocument(info).toJson(QJsonDocument::Compact);
     } else {
         // Exercise progress arriving on stderr and the final line lacking a newline.
-        err << "MDOW_PROGRESS:{\"downloaded_bytes\":500,\"total_bytes\":1000,\"speed\":1048576,\"eta\":2}\n"; err.flush();
-        out << "MDOW_FILE:" << QJsonDocument(QJsonArray{QStringLiteral("E:/测试/video.mp4")}).toJson(QJsonDocument::Compact).mid(1).chopped(1);
+        err << "MDOWN_PROGRESS:{\"downloaded_bytes\":500,\"total_bytes\":1000,\"speed\":1048576,\"eta\":2}\n"; err.flush();
+        out << "MDOWN_FILE:" << QJsonDocument(QJsonArray{QStringLiteral("E:/测试/video.mp4")}).toJson(QJsonDocument::Compact).mid(1).chopped(1);
     }
     out.flush(); return 0;
 }
