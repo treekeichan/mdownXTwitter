@@ -114,7 +114,7 @@ void DownloadEngine::readErrors() {
 
 void DownloadEngine::handleLine(const QByteArray &line, bool error) {
     if (line.startsWith("MDOWN_PROGRESS:")) {
-        const auto p = QJsonDocument::fromJson(line.mid(14)).object();
+        const auto p = QJsonDocument::fromJson(line.mid(15)).object();
         const double total = p.value(QStringLiteral("total_bytes")).toDouble(
             p.value(QStringLiteral("total_bytes_estimate")).toDouble());
         const double received = p.value(QStringLiteral("downloaded_bytes")).toDouble();
@@ -124,7 +124,7 @@ void DownloadEngine::handleLine(const QByteArray &line, bool error) {
             speed > 0 ? tr("%1 MiB/s").arg(speed / 1048576.0, 0, 'f', 2) : QString(),
             eta >= 0 ? tr("剩余 %1 秒").arg(eta) : QString());
     } else if (line.startsWith("MDOWN_FILE:")) {
-        const auto a = QJsonDocument::fromJson(QByteArray("[") + line.mid(10) + QByteArray("]")).array();
+        const auto a = QJsonDocument::fromJson(QByteArray("[") + line.mid(11) + QByteArray("]")).array();
         if (!a.isEmpty()) savedPath = a.first().toString();
     } else if (error && !line.isEmpty()) {
         // Do not expose engine diagnostics: they can contain cookie paths, proxy credentials or signed URLs.

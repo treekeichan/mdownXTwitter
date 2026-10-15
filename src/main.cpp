@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     app.setFont(QFont(QStringLiteral("Microsoft YaHei UI"), 10));
     QCoreApplication::setOrganizationName(QStringLiteral("mdownXTwitter"));
     QCoreApplication::setApplicationName(QStringLiteral("mdownXTwitter"));
-    QCoreApplication::setApplicationVersion(QStringLiteral("0.1.0"));
+    QCoreApplication::setApplicationVersion(QStringLiteral("0.0.1"));
     if (app.arguments().contains(QStringLiteral("--smoke-test")))
         QCoreApplication::setApplicationName(QStringLiteral("mdownXTwitterSmokeTest"));
     else
