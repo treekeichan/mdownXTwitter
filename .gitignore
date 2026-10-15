@@ -1,0 +1,31 @@
+# Publish only the source project. Add new required files explicitly.
+/*
+!/.gitignore
+!/.gitattributes
+!/CMakeLists.txt
+!/README.md
+!/THIRD_PARTY.md
+!/src/
+!/tests/
+!/scripts/
+/src/*
+!/src/*.cpp
+!/src/*.h
+/tests/*
+!/tests/*.cpp
+/scripts/*
+!/scripts/*.ps1
+
+# Never publish credentials, IDE state, local settings or runtime output.
+.env
+.env.*
+*.user
+*.log
+*.ini
+*.pem
+*.key
+*.pfx
+*.p12
+cookies*
+*cookies*.txt
+history.json
